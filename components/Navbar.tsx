@@ -3,16 +3,23 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import {
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+  useUser,
+} from "@clerk/nextjs";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { label: "Library", href: "/" },
   { label: "Add New", href: "/books/new" },
-  { label: "Pricing", href: "/subscriptions" },
 ];
 
 const Navbar = () => {
   const pathName = usePathname();
+  const { user } = useUser();
 
   return (
     <header className="w-full fixed z-50 bg-(--bg-primary)">
@@ -45,6 +52,19 @@ const Navbar = () => {
               </Link>
             );
           })}
+          <div className="flex gap-3 items-center">
+            <SignedOut>
+              <SignInButton mode="modal" />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+              {user?.firstName && (
+                <Link href="/subscriptions" className="nav-user-name">
+                  {user.firstName}
+                </Link>
+              )}
+            </SignedIn>
+          </div>
         </nav>
       </div>
     </header>
