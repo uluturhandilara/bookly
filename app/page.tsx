@@ -1,9 +1,9 @@
-import React from "react";
+import HeroSection from "@/components/HeroSection";
 
-export default function page() {
+export default function Page() {
   return (
-    <div>
-      <h1 className="text-2xl font-bold underline">Bookly</h1>
+    <div className="container mx-auto w-full">
+      <HeroSection />
     </div>
   );
 }
