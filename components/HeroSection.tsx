@@ -24,7 +24,7 @@ export default function HeroSection() {
     "/assets/Gemini_Generated_Image_jlix6fjlix6fjlix%20(1)%201.png";
 
   return (
-    <section className="library-hero-card wrapper">
+    <section className="library-hero-card wrapper mb-10 md:mb-16">
       <div className="flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-8 w-full">
         <div className="library-hero-text flex-1 min-w-0">
           <h1 className="library-hero-title">Your library</h1>
@@ -69,9 +69,7 @@ export default function HeroSection() {
                 <span className="library-step-number">{step.number}</span>
                 <div>
                   <p className="library-step-title">{step.title}</p>
-                  <p className="library-step-description">
-                    {step.description}
-                  </p>
+                  <p className="library-step-description">{step.description}</p>
                 </div>
               </li>
             ))}
