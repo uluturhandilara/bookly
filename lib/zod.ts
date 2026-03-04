@@ -15,7 +15,7 @@ export const UploadSchema = z.object({
   coverImage: z.instanceof(File).optional(),
   title: z.string().min(1, "Title is required"),
   author: z.string().min(1, "Author name is required"),
-  voiceId: z.enum(VOICE_IDS, { message: "Please choose an assistant voice" }),
+  persona: z.enum(VOICE_IDS, { message: "Please choose an assistant voice" }),
 });
 
 export type UploadFormValues = z.infer<typeof UploadSchema>;

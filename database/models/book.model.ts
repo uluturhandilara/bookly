@@ -1,4 +1,4 @@
-import { model, Schema, models } from "mongoose";
+import { model, Schema, models } from "mongoose"; // Next.js gibi ortamda hot reloadda modelin iki kez register edilmesini engeller mevcut model varsa onu kullanır.
 import { IBook } from "@/types";
 
 const BookSchema = new Schema<IBook>(
@@ -21,7 +21,7 @@ const BookSchema = new Schema<IBook>(
     fileSize: { type: Number, required: true },
     totalSegments: { type: Number, default: 0 },
   },
-  { timestamps: true },
+  { timestamps: true }, // createdAt ve updatedAt alanlarını otomatik olarak ekler
 );
 
 const Book = models.Book || model<IBook>("Book", BookSchema);
