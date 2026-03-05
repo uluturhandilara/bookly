@@ -1,14 +1,22 @@
 "use client";
 
-export default function LoadingOverlay() {
+import { Loader2 } from "lucide-react";
+
+const LoadingOverlay = () => {
   return (
     <div className="loading-wrapper">
-      <div className="loading-shadow-wrapper bg-white rounded-xl shadow-lg">
-        <div className="loading-shadow p-8">
-          <div className="loading-animation size-12 border-4 border-[#663820] border-t-transparent rounded-full" />
-          <p className="loading-title text-[#212a3b]">Preparing your book...</p>
+      <div className="loading-shadow-wrapper bg-white shadow-soft-lg">
+        <div className="loading-shadow">
+          <Loader2 className="loading-animation w-12 h-12 text-[#663820]" />
+          <h2 className="loading-title">Synthesizing Your Book</h2>
+          <p className="text-[#777] text-center max-w-xs">
+            Please wait while we process your PDF and prepare your interactive
+            literary experience.
+          </p>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default LoadingOverlay;
