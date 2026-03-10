@@ -121,10 +121,11 @@ export async function parsePDFFile(file: File) {
       throw new Error("Could not get canvas context");
     }
 
+    // pdfjs-dist types differ by env: Vercel build expects `canvas`, local typings use `canvasContext`; both work at runtime
     await firstPage.render({
-      canvasContext: context,
+      canvas,
       viewport: viewport,
-    }).promise;
+    } as unknown as Parameters<typeof firstPage.render>[0]).promise;
 
     // Convert canvas to data URL
     const coverDataURL = canvas.toDataURL("image/png");
