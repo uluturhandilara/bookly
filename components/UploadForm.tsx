@@ -143,6 +143,14 @@ export default function UploadForm() {
         throw new Error("Failed to save book segments");
       }
 
+      console.log("Form submitted successfully", {
+        title: values.title,
+        author: values.author,
+        persona: values.persona,
+        bookId: book.data._id,
+        slug: book.data.slug,
+      });
+
       form.reset();
       router.push("/");
       
