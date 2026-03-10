@@ -1,14 +1,24 @@
 import HeroSection from "@/components/HeroSection";
 import BookCard from "@/components/BookCard";
-import { sampleBooks } from "@/lib/constants";
 
-export default function Page() {
+import { getAllBooks } from "@/lib/actions/book.actions";
+
+export default async function Page() {
+  const bookResults = await getAllBooks();
+  const books = bookResults.success ? (bookResults.data ?? []) : [];
+
   return (
     <div className="wrapper container mx-auto w-full">
       <HeroSection />
 
+      {!bookResults.success && (
+        <p className="text-center text-red-600 py-4">
+          Books could not be loaded. Please check your connection.
+        </p>
+      )}
+
       <div className="library-books-grid">
-        {sampleBooks.map((book) => (
+        {books.map((book) => (
           <BookCard
             key={book._id}
             title={book.title}
