@@ -22,6 +22,11 @@ export const metadata: Metadata = {
   title: "Bookly",
   description:
     "Transform your books into interactive AI conversations. Upload PDFs, and chat with your books using voice.",
+  icons: {
+    icon: "/assets/logo.png",
+    shortcut: "/assets/logo.png",
+    apple: "/assets/logo.png",
+  },
 };
 
 export default function RootLayout({
