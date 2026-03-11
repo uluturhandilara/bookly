@@ -8,12 +8,12 @@ interface BookPageProps {
 }
 
 export default async function BookPage({ params }: BookPageProps) {
-  const { userId } = await auth();
-  if (!userId) {
-    redirect("/sign-in");
-  }
-
   const { slug } = await params;
+  const { userId } = await auth();
+
+  if (!userId) {
+    redirect(`/sign-in?redirect_url=${encodeURIComponent(`/books/${slug}`)}`);
+  }
   const result = await getBookBySlug(slug);
 
   if (!result.success || !result.data) {
