@@ -8,7 +8,6 @@ import {
   SignedIn,
   SignedOut,
   UserButton,
-  useUser,
 } from "@clerk/nextjs";
 import { cn } from "@/lib/utils";
 
@@ -19,7 +18,6 @@ const navItems = [
 
 const Navbar = () => {
   const pathName = usePathname();
-  const { user } = useUser();
 
   return (
     <header className="w-full fixed z-50 bg-(--bg-primary)">
@@ -58,11 +56,6 @@ const Navbar = () => {
             </SignedOut>
             <SignedIn>
               <UserButton />
-              {user?.firstName && (
-                <Link href="/subscriptions" className="nav-user-name">
-                  {user.firstName}
-                </Link>
-              )}
             </SignedIn>
           </div>
         </nav>

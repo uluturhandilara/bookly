@@ -79,7 +79,6 @@ export const createBook = async (data: CreateBook) => {
       };
     }
 
-    // Todo: Check subscription limits before creating a book
     const { getUserPlan } = await import("@/lib/subscription.server");
     const { PLAN_LIMITS } = await import("@/lib/subscription-constants");
 
@@ -203,7 +202,6 @@ export const searchBookSegments = async (
 
     const bookObjectId = new mongoose.Types.ObjectId(bookId);
 
-    // Try MongoDB text search first (requires text index)
     let segments: Record<string, unknown>[] = [];
     try {
       segments = await BookSegment.find({
@@ -215,11 +213,9 @@ export const searchBookSegments = async (
         .limit(limit)
         .lean();
     } catch {
-      // Text index may not exist — fall through to regex fallback
       segments = [];
     }
 
-    // Fallback: regex search matching ANY keyword
     if (segments.length === 0) {
       const keywords = query.split(/\s+/).filter((k) => k.length > 2);
       const pattern = keywords.map(escapeRegex).join("|");
